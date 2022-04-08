@@ -4,6 +4,9 @@
 
 https://user-images.githubusercontent.com/78419164/162445810-18ebea84-1b4f-4b1c-b24d-0feff6ad3ff6.mov
 
+## Watch YouTube Explainer Video
+[![[#08] Cómo usar 🤗 Spaces + GPU sin costo en minutos con SM Studio Lab](https://img.youtube.com/vi/skaYsdSuE70/0.jpg)](https://www.youtube.com/watch?v=skaYsdSuE70)
+
 ## Getting started
 - [SageMaker StudioLab Explainer Video](https://www.youtube.com/watch?v=FUEIwAsrMP4)
 - [Hugging Face Spaces Documentation](https://huggingface.co/docs/hub/spaces#reference)
