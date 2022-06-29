@@ -9,6 +9,7 @@ dependencies:
   - ipykernel
   - ipywidgets
   - gh
+  - opencv
   - pip:
     - streamlit
     - gradio
