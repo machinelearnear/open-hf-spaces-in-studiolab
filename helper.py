@@ -77,7 +77,7 @@ class RepoHandler:
             print(f"{bold}Cloning repo... may take a few minutes... remember to set your Space to 'public'...{unbold}")
             subprocess.run(["apt-get", "install", "git-lfs"])
             subprocess.run(["git", "lfs", "install", "--system", "--skip-repo"])
-            subprocess.run(["git", "clone", self.repo_url])
+            subprocess.run(["git", "clone", "--recurse-submodules", self.repo_url])
 
     def install_requirements(self, requirements_file: str = None, install_xformers: bool = False) -> None:
         """
