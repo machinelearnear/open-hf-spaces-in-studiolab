@@ -75,7 +75,7 @@ class RepoHandler:
             print(f"{bold}Repository '{self.repo_name}' has already been cloned.{unbold}")
         else:
             print(f"{bold}Cloning repo... may take a few minutes... remember to set your Space to 'public'...{unbold}")
-            subprocess.run(["sudo", "apt-get", "install", "git-lfs"])
+            subprocess.run(["apt-get", "install", "git-lfs"])
             subprocess.run(["git", "lfs", "install", "--system", "--skip-repo"])
             subprocess.run(["git", "clone", self.repo_url])
 
@@ -115,7 +115,7 @@ class RepoHandler:
         if all([aws_domain, aws_region]):
               print(f'{bold}https://{aws_domain}.studio.{aws_region}.sagemaker.aws/studiolab/default/jupyter/proxy/6006/{unbold}')
                 
-        self.replace_env_vars($self.app_file)
+        self.unset_environment_variables()
         
         if readme["sdk"] == 'gradio':
             gr.close_all()
@@ -171,22 +171,12 @@ class RepoHandler:
 
         return new_filename.name
     
-    def replace_env_vars(self, filename) -> None:
-        # por el código que quieres agregar
-        new = "import os\n\nos.environ[\"SHARED_UI\"] = \"\"\n\nos.environ[\"SPACE_ID\"] = \"\"\n\"
-    
-        # Abre el archivo en modo de lectura/escritura
-        with open(filename, "r+") as f:
-            # Lee todo el contenido del archivo en una variable
-            content = f.read()
-
-            # Usa re.sub() para buscar las líneas que empiecen con "import os"
-            # y reemplazarlas por una cadena vacía
-            content = re.sub(r"^import os.*", new, content, flags=re.MULTILINE)
-
-            # Vuelve al inicio del archivo y escribe el nuevo contenido
-            f.seek(0)
-            f.write(content)
+    def unset_environment_variables(self) -> None:
+        os.unsetenv("SHARED_UI")
+        os.environ.pop("SHARED_UI", None)
+        
+        os.unsetenv("IS_SHARED")
+        os.environ.pop("IS_SHARED", None)
 
     def install_xformers(self) -> None:
         from subprocess import getoutput
